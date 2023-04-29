@@ -14,7 +14,7 @@ RUN mv "$PHP_INI_DIR/php.ini-production" "$PHP_INI_DIR/php.ini"
 COPY --from=composer:2.0 /usr/bin/composer /usr/bin/composer
 
 WORKDIR /var/www/html
-COPY ./ajax.php /var/www/html/
+RUN cp ./ajax.php /var/www/html/
 
 
 RUN chown -Rf www-data:www-data ./
