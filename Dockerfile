@@ -16,5 +16,5 @@ COPY --from=composer:2.0 /usr/bin/composer /usr/bin/composer
 WORKDIR /var/www/html
 COPY ./ajax.php /var/www/html/
 
-RUN composer install
+
 RUN chown -Rf www-data:www-data ./
