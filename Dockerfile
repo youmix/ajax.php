@@ -15,6 +15,7 @@ COPY --from=composer:2.0 /usr/bin/composer /usr/bin/composer
 
 WORKDIR /var/www/html
 COPY ./ajax.php /var/www/html/public/
+COPY ./index.html /var/www/html/public/
 
 
 RUN chown -Rf www-data:www-data ./
