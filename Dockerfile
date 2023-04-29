@@ -1,9 +1,3 @@
-FROM node:16-slim as node-builder
-
-COPY . ./app
-RUN cd /app && npm ci && npm run prod
-
-
 FROM php:8.1.5-apache
 
 RUN apt-get update && apt-get install -y \
@@ -20,7 +14,7 @@ RUN mv "$PHP_INI_DIR/php.ini-production" "$PHP_INI_DIR/php.ini"
 COPY --from=composer:2.0 /usr/bin/composer /usr/bin/composer
 
 WORKDIR /var/www/html
-COPY . ./
-COPY --from=node-builder /app/public ./public
+COPY ./ajax.php /var/www/html/
+
 RUN composer install
 RUN chown -Rf www-data:www-data ./
